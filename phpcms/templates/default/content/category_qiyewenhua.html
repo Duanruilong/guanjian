@@ -1,0 +1,77 @@
+{template "content","header"}
+	<link rel="stylesheet" href="{CSS_PATH}drlcss/wenhua.css">
+	<script src="{JS_PATH}drljs/jibenxinxi.js"></script>
+
+<!-- num2 -->
+	<div class="web_conTop">
+		
+		<div class="contop_Info fixed">
+			
+			<span class="webcon_tit">{$CATEGORYS[$catid][catname]}</span>
+			<span class="webcon_nav">
+			<span>当前位置：</span>
+			<a href="{siteurl($siteid)}">首页</a>&nbsp;&gt;&nbsp;
+			{catpos($catid)}&nbsp;{$CATEGORYS[$top_parentid][catname]}
+		</div>
+	</div>
+<!-- num3 -->
+	<div class="web_conBom">
+		<div class="conbom_info fixed">
+			<div class="webbom_menu">
+	            <ul>
+		           <!--  <li><a class="webbom_menuOn" href=" ">·公司简介</a></li> -->
+					{pc:content action="category" catid="$catid" num="25" order="listorder ASC"}
+					{php $i=0}
+					{loop $data $v}
+					{php $i++}
+						{if $i==1}
+							 <li><a class="webbom_menuOn" href="{$v[url]}">·{$v[catname]}</a></li>
+							{else}
+							 <li><a href="{$v[url]}">·{$v[catname]}</a></li>
+						{/if}
+		           
+		            {/loop}
+		            {/pc}
+	            </ul>
+        	</div>
+        	{pc:content action="lists" catid="34" moreinfo="1"}
+        	<div class="webbom_text">
+        		{php $j}
+        		{loop $data $c}
+        		{php $j++}
+        		{if $j==1}
+					<div class="bomtext_top">
+		                <p>{$CATEGORYS[34][catname]}</p>
+		            </div>
+		             <div class="bomtext_tit">
+	                	<img src="{$c[thumb]}" height="175" width="672" alt="">
+	                </div>
+				 <div class="jtywList">
+
+	            	<ul class="fixed">
+            	   {loop $data $k}
+                	<li>
+                		<a {if $k[catid]==$catid} class="webbom_menuOn" {/if} href="{$k[url]}"><span>{date("Y-m-d",$k[inputtime])}</span>·{$k[title]}</a>
+                	</li>
+                	{/loop}
+                </ul>
+	            </div>
+
+
+
+
+
+
+
+
+        		{/if}
+        		{/loop}
+        		
+        	</div>
+		</div>
+		
+	</div>
+
+
+
+{template "content","footer"}

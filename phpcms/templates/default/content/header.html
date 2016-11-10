@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>{if isset($SEO['title']) && !empty($SEO['title'])}{$SEO['title']}{/if}{$SEO['site_title']}</title>
+	<meta name="keywords" content="{$SEO['keyword']}">
+	<meta name="description" content="{$SEO['description']}">
+
+	<script type="text/javascript" src="{JS_PATH}drljs/jquery-1.12.4.min.js"></script>
+	<link rel="stylesheet" href="{CSS_PATH}drlcss/index.css">
+	<script src="{JS_PATH}drljs/function.js"></script>
+	<script src="{JS_PATH}drljs/animate.js"></script>
+	<script src="{JS_PATH}drljs/jquery-1.12.4.min.js"></script>
+	<script src="{JS_PATH}drljs/indexjq.js"></script>
+	
+</head>
+
+<body>
+<div class="max" >
+
+
+	<!--頂部-->
+	<div class="header">
+		<div class="header_info">
+			<div class="logo">
+				<a href="{siteurl($siteid)}"></a>
+			</div>
+			<div class="menu">
+				<div class="search fixed">
+					<a class="language" href="#">ENGLISH</a>
+					<input type="submit" class="submit" value="" name="">
+					<input type="" class="search1" onfocus="if(this.value==this.defaultValue){this.value='';this.className='search2'}" onblur="if(this.value==''){this.value='请输入关键字';this.className='search1'}"  value="请输入关键字" name="keywords">
+				</div>
+				<div class="nav">
+					<ul id="nav">
+						<li class="nav_1 nav_on1 ">
+							<a href="{siteurl($siteid)}" style="background:url({IMG_PATH}drlimg/nav.gif) no-repeat 15px -30px;"></a>
+						</li>
+						{pc:content action="category" catid="0"}
+						{loop $data $v}
+
+						<li class="nav_2 nav_on" id="li-1">
+						<a {if $v[catid]==$top_parentid} style="color:blue" {/if} href="{$v[url]}" ><span class="tabs-hide">|</span>{$v[catname]}</a>
+							
+							{pc:content action="category" catid="$v[catid]"}
+							
+							<ul class="nav_sub nav_subpos" >
+							{loop $data $r}
+							<!-- {php var_dump ($r)} -->
+								<li><a href="{$r[url]}" >{$r[catname]}</a></li>
+							
+							{/loop}
+							</ul>
+							
+							{/pc}
+						</li>
+						{/loop}
+						
+					</ul>
+					{/pc}
+				</div>
+				
+			</div>
+		</div>
+	</div>	
+	

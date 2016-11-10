@@ -1,0 +1,9 @@
+body,p,h1,h2,h3,h4,h5,h6,textarea, pre, ul,li, ol, dl, dt, dd,input,select,span{
+	margin: 0;padding: 0;list-style: none;
+}
+body{
+	font-family: "微软雅黑" ;  /*list-style: none 去除点*/
+	font-size: 16px; 
+	line-height: 1.5;  /*倍数行高，相对于字体大小来设置*/
+
+}

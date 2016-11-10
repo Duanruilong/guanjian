@@ -1,0 +1,29 @@
+.box{
+	width:1400px;height:130px;
+	background:#ccc;
+	margin:0 auto;
+}
+.box .one{
+	height:100px;
+}
+.one img{width:1400px;}
+
+.nav-list{
+	float: left;
+	width:80px;
+	height:30px;
+	margin:0 10px;
+	line-height:30px;
+	text-align:center;
+}
+.nav-list:hover{background:#56fc9a;}
+.nav-list a{
+	
+	color:#000;
+	text-decoration:none;
+}
+
+
+
+
+

@@ -1,0 +1,97 @@
+{template "content","header"}
+	<link rel="stylesheet" href="{CSS_PATH}drlcss/jingji.css">
+	<script src="{JS_PATH}drljs/jibenxinxi.js"></script>
+
+<!-- num2 -->
+	<div class="web_conTop">
+		
+		<div class="contop_Info fixed">
+			
+			<span class="webcon_tit">{$CATEGORYS[$catid][catname]}</span>
+			<span class="webcon_nav">
+			<span>当前位置：</span>
+			<a href="{siteurl($siteid)}">首页</a>&nbsp;&gt;&nbsp;
+			{catpos($catid)}&nbsp;{$CATEGORYS[$top_parentid][catname]}
+		</div>
+	</div>
+<!-- num3 -->
+	<div class="web_conBom">
+		<div class="conbom_info fixed">
+           {pc:content action="category" catid="$top_parentid" num="20" order="listorder ASC"}
+			<div class="webbom_menu">
+	            <ul>
+              	{php $i=0}
+               	{loop $data $v}
+                {php $i++}
+                {if $i==1}
+                  <li>
+                     <a  class="webbom_menuOn"  href="{$v[url]}">·{$v[catname]}</a>
+                        <ul class="bom_submenu">
+                          {pc:content action="category" catid="$top_parentid" num="3"}
+                          {loop $data $f}
+                           <li><a href="{$f[url]}">- {$f[catname]}</a></li>
+                            {/loop}
+                            {/pc}
+                        </ul>
+                   </li>
+                 {else}
+                    <li><a href="{$v[url]}">·{$v[catname]}</a></li>
+                    	
+                      {/if}
+
+                     
+                   {/loop}   
+              	</ul>
+		            {/pc}
+		            
+	            </ul>
+        	</div>
+
+
+			 <div class="webbom_text">
+            <div class="zyyw">
+                <p>{$CATEGORYS[$catid][catname]}</p>
+                </div>
+                <div class="hjgc_list">
+                {pc:content action="lists" catid="$catid" num="10" moreinfo="1" page="$page"}
+
+                <ul style="background: transparent none repeat scroll 0% 0%; padding: 0px;" id="hjgcList">
+                {loop $data $c}
+                <li class="fixed">
+                  <div class="hjgcImg">
+                    <a href="{$c[url]}"><span></span>
+                      <img src="{$c[thumb]}">
+                    </a>
+                  </div>
+                  <div class="hjgcInfo">
+                    <span class="fixed">
+                      <p>
+                        <a href=" {$c[url]}">{$c[title]}</a>
+                      </p>
+                    </span>
+                    <p class="hjgctext">{str_cut(strip_tags($c[content]),300,'.')}</p>
+                    <!-- <p class="hjgctext">{str_cut($c[description],400,'.')}</p> -->
+                    <br>
+                    <p class="hjgctime">承建单位：广州市市政集团</p>
+                    <!-- <p class="hjgctime">承建单位：{$c[description]}</p> -->
+                  </div>
+                </li>
+               {/loop}
+                
+       
+         </ul>
+         {/pc}
+            </div>
+               <div class="paged" id="setpage">{$pages}</div>  
+       			
+            
+          </div>
+
+
+		</div>
+		
+	</div>
+
+
+
+{template "content","footer"}

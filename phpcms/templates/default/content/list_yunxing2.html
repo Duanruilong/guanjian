@@ -1,0 +1,77 @@
+{template "content","header"}
+
+    <link rel="stylesheet" href="{CSS_PATH}drlcss/wenhua.css">
+    <script src="{JS_PATH}drljs/jibenxinxi.js"></script>
+    
+<!-- num2 -->
+    <div class="web_conTop">
+        
+        <div class="contop_Info fixed">
+            
+            <span class="webcon_tit">{$CATEGORYS[$top_parentid][catname]}</span>
+            <span class="webcon_nav">
+            <span>当前位置：</span>
+            <a href="{siteurl($siteid)}">首页</a>&nbsp;&gt;&nbsp;
+            {catpos($catid)}
+        </div>
+    </div>
+
+<!-- num3 -->
+  <div class="web_conBom">
+    <div class="conbom_info fixed">
+     {pc:content action="category" catid="$top_parentid" num="20" order="listorder ASC"}
+      <div class="webbom_menu">
+          
+              <ul>
+               {php $i=0}
+               {loop $data $v}
+                {php $i++}
+                 {if $i==1}
+                  <li>
+                     <a {if $v[catid]==$catid} class="webbom_menuOn" {/if} href="{$v[url]}">·{$v[catname]}</a>
+                        <ul class="bom_submenu">
+                         {pc:content action="category" catid="$top_parentid" num="3"}
+                          {loop $data $f}
+                           <li><a href="{$f[url]}">- {$f[catname]}</a></li>
+                            {/loop}
+                            {/pc}
+                        </ul>
+                   </li>
+                      {else}
+                    <li><a  {if $v[catid]==$catid} class="webbom_menuOn" {/if} href="{$v[url]}">·{$v[catname]}</a></li>
+                      {/if}
+                  
+                    
+                     
+                    
+                   {/loop}   
+              </ul>
+              {/pc}
+          </div>
+          <div class="webbom_text">
+            <div class="bomtext_top">
+                <p>{$CATEGORYS[$catid][catname]}</p>
+                </div>
+                <div class="hjgc_list">
+                {pc:content action="lists" catid="$catid" num="4" moreinfo="1" page="$page"}
+
+                <ul style="background: transparent none repeat scroll 0% 0%; padding: 0px;" id="hjgcList">
+                {loop $data $c}
+                <!-- {php var_dump($c)} -->
+                <li class="fixed">
+                    <div class="hjgcInfo" style="padding:20px 0 50px 50px">{$c[content]}</div>
+                </li>
+               {/loop}
+                
+       
+         </ul>
+         {/pc}
+            </div>
+         
+            
+          </div>
+    </div>
+  </div>
+
+
+{template "content","footer"}

@@ -1,0 +1,58 @@
+{template "content","header"}
+
+    <link rel="stylesheet" href="{CSS_PATH}drlcss/chuangxin.css">
+    <script src="{JS_PATH}drljs/jibenxinxi.js"></script>
+    
+<!-- num2 -->
+    <div class="web_conTop">
+        
+        <div class="contop_Info fixed">
+            
+            <span class="webcon_tit">{$CATEGORYS[$top_parentid][catname]}</span>
+            <span class="webcon_nav">
+            <span>当前位置：</span>
+            <a href="{siteurl($siteid)}">首页</a>&nbsp;&gt;&nbsp;
+            {catpos($catid)}
+        </div>
+    </div>
+<!-- num3 -->
+    <div class="web_conBom">
+        <div class="conbom_info fixed">
+            <div class="webbom_menu">
+                     {pc:content action="category" catid="$top_parentid" num="20" order="listorder ASC"}
+                <ul>
+                    {loop $data $v}
+                             <li><a {if $v[catid]==$catid} class="webbom_menuOn" {/if} href="{$v[url]}">·{$v[catname]} </a></li>
+                    {/loop}
+                </ul>
+                  {/pc}
+            </div>
+                  
+
+           
+
+                {pc:content action="lists" catid="$catid" num="4" moreinfo="1" page="$page"}
+                 <div class="webbom_text">
+               
+                    <div class="bomtext_top">
+                        <p>{$CATEGORYS[$catid][catname]}</p>
+                      </div> 
+                         <div class="jtywList">
+                            <ul>
+                             {loop $data $c}
+                                <li>{$c[content]}</li>
+                              {/loop}
+                            </ul>
+                        </div>
+                         <div class="paged" id="setpage">{$pages}</div>  
+            </div>
+           
+            {/pc}
+
+            </div>
+        </div>
+        
+    </div>
+
+
+{template "content","footer"}
